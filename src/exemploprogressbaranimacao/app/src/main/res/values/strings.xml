@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Exemplo Animação ProgressBar</string>
+    <string name="text_msg">Transição suave</string>
+</resources>
