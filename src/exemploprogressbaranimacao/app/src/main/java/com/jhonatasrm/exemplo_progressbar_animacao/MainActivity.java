@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // define o tempo de animação
         tempoAnimacao = getResources().getInteger(android.R.integer.config_longAnimTime);
 
         texto = findViewById(R.id.text_msg);
@@ -31,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void run() {
                 SystemClock.sleep(1500);
+                
+                // modifica main activity na thread principal
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -43,14 +46,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void mostrarConteudo() {
+        // torna o texto visível mas deixa invisivel ao definir o alpha como 0.0f
         texto.setVisibility(View.VISIBLE);
         texto.setAlpha(0.0f);
 
+        // animação que modifica o alpha de 0.0f para visível 1.0f no tempo de animação definido
         texto.animate()
                 .alpha(1.0f)
                 .setDuration(tempoAnimacao)
                 .setListener(null);
 
+        // remove a visibilidade no tempo de animação definido para tornar suave a transição
         progress.animate()
                 .alpha(0.0f)
                 .setDuration(tempoAnimacao)
